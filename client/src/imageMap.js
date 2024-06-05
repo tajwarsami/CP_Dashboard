@@ -1,6 +1,7 @@
 const imageMap = {
     'codeforces.com': '/images/codeforces.png',
-    'codechef.com': '/images/codechef.png'
+    'cucup.ac': '/images/codechef.png'
+
     // Add more mappings
 };
 
