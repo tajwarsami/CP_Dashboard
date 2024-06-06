@@ -51,7 +51,7 @@ const Contests = () => {
                         placeholder="Search..."
                         value={search}
                         onChange={handleSearchChange}
-                        className="border rounded p-2 w-full md:w-1/3"
+                        className="border rounded p-2 w-full w md:w-1/3"
                     />
                      <div className="flex items-center space-x-2">
                         <label>
