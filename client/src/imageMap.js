@@ -13,15 +13,15 @@ const imageMap = {
     'projecteuler.net': '/images/projecteuler.png',
     'leetcode.com': '/images/leetcode.png',
     'kep.uz': '/images/kep.jpeg',
-    //'dl.gsu.by': '/images/codeforces.png',
+    'dl.gsu.by': '/images/default.png',
     'geeksforgeeks.org': '/images/geeksforgeeks.png',
     'codingame.com': '/images/codingame.png',
     'techgig.com': '/images/techgig.png',
-    //'icfpconference.org': '/images/codeforces.png',
+    'icfpconference.org': '/images/default.png',
     'usaco.org': '/images/usaco.png'
 
     
-    // Add more mappings
+   
 };
 
 export default imageMap;
