@@ -4,6 +4,7 @@ import Home from "./Home";
 import Contests from "./Contests";
 import About from "./About";
 import ContestDetails from "./ContestDetails";
+import ResourceList from "./ResourceList";
 
 const App = () => {
   return (
@@ -21,6 +22,9 @@ const App = () => {
               <Link to="/contests" className="hover:underline">
                 Contests
               </Link>
+              <Link to="/resources" className="hover:underline">
+                Resouces
+              </Link>
               <Link to="/about" className="hover:underline">About</Link>
             </div>
           </div>
@@ -29,6 +33,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/contests" element={<Contests />} />
           <Route path="/contests/:id" element={<ContestDetails />} />
+          <Route path="/resources" element={<ResourceList/>} />
           <Route path="/about" element={<About />} />
         </Routes>
       </div>
