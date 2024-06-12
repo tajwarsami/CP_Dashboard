@@ -1,5 +1,6 @@
 const imageMap = {
     'codeforces.com': '/images/codeforces.png',
+    'codeforces.com/gyms': '/images/codeforces.png',
     'codechef.com': '/images/codechef.png',
     'codingninjas.com/codestudio': '/images/codingninjas.png',
     'yukicoder.me': '/images/yukicoder.png',

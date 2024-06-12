@@ -5,6 +5,7 @@ import Contests from "./Contests";
 import About from "./About";
 import ContestDetails from "./ContestDetails";
 import ResourceList from "./ResourceList";
+import ResourceDetails from "./ResourceDetails";
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="/contests" element={<Contests />} />
           <Route path="/contests/:id" element={<ContestDetails />} />
           <Route path="/resources" element={<ResourceList/>} />
+          <Route path="/resources/:id" element={<ResourceDetails/>} />
           <Route path="/about" element={<About />} />
         </Routes>
       </div>
