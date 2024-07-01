@@ -34,7 +34,7 @@ const ResourceList = () => {
 
 
   return (
-    <div className="container mx-auto py-10 px-4">
+    <div className="mx-auto py-10 px-4 bg-purple-600">
             <h1 className="text-2xl font-bold mb-4">Resources</h1>
             <div className="mb-4">
                 <input
@@ -47,7 +47,7 @@ const ResourceList = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredResources.map((resource) => (
-                    <div key={resource.id} className="bg-white shadow-lg rounded-lg p-6">
+                    <div key={resource.id} className="bg-purple-300 shadow-lg rounded-lg p-6">
                         <div className="flex items-center">
                             <img src={imageMap[resource.name]} alt={resource.name} className="w-16 h-16 rounded-full mr-4" />
                             <div>

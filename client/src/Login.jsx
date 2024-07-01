@@ -26,12 +26,14 @@ const LogIn = ({ setIsAuthenticated }) => {
     };
 
     return (
-        <div className="container mx-auto py-10">
-            <h1 className="text-2xl font-bold mb-4">Login</h1>
-            <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-lg p-6">
+        <div className="min-h-screen flex items-center justify-end bg-cover bg-center pr-20" style={{backgroundImage: 'url("/images/log.jpg")'}}>
+    <div className="max-w-md w-full bg-white bg-opacity-00 rounded-lg shadow-lg p-8">
+       
+            <h1 className="text-3xl font-bold mb-6 text-center text-blue-600">Login</h1>
+            <form onSubmit={handleSubmit} className="space-y-6">
                 {errors && <div className="text-red-500 mb-4">{errors}</div>}
-                <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+                <div>
+                    <label className="block text-gray-700 font-bold" htmlFor="username">
                         Username
                     </label>
                     <input
@@ -40,11 +42,12 @@ const LogIn = ({ setIsAuthenticated }) => {
                         name="username"
                         value={username}
                         onChange={handleChange}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        className="mt-1 block w-full border-gray-300 rounded-md p-2 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        placeholder='Enter your name'
                     />
                 </div>
-                <div className="mb-6">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+                <div>
+                    <label className="block text-gray-700 font-bold" htmlFor="password">
                         Password
                     </label>
                     <input
@@ -53,19 +56,21 @@ const LogIn = ({ setIsAuthenticated }) => {
                         name="password"
                         value={password}
                         onChange={handleChange}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                    />
+                        className="mt-1 block w-full border-gray-300 p-2 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        placeholder='Enter your password'/>
                 </div>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-center">
                     <button
-                        type="submit"
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        type="submit" className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                     >
                         Sign In
                     </button>
                 </div>
             </form>
-        </div>
+        
+    </div>
+</div>
+
     );
 };
 
