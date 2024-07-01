@@ -42,7 +42,7 @@ const Contests = () => {
   };
 
   return (
-    <div className="container mx-auto py-10 px-4">
+    <div className="mx-auto py-10 px-4 bg-purple-600">
          <h1 className="text-2xl font-bold mb-4">Upcoming Contests</h1>
             <div className="flex justify-between mb-4">
                 <div className="flex items-center space-x-4">
@@ -53,7 +53,7 @@ const Contests = () => {
                         onChange={handleSearchChange}
                         className="border rounded p-2 w-full w md:w-1/3"
                     />
-                     <div className="flex items-center space-x-2">
+                     <div className="flex items-center space-x-2 font-bold">
                         <label>
                             <input
                                 type="radio"
@@ -79,7 +79,7 @@ const Contests = () => {
             </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredContests.map((contest) => (
-          <div key={contest.id} className="bg-white shadow-lg rounded-lg p-6">
+          <div key={contest.id} className=" shadow-lg rounded-lg p-6 bg-purple-300">
             <div className="flex items-center">
               <img
                 src={

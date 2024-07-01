@@ -42,7 +42,7 @@ const LogIn = ({ setIsAuthenticated }) => {
                         name="username"
                         value={username}
                         onChange={handleChange}
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        className="mt-1 block w-full border-gray-300 rounded-md p-2 shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                         placeholder='Enter your name'
                     />
                 </div>
@@ -56,7 +56,7 @@ const LogIn = ({ setIsAuthenticated }) => {
                         name="password"
                         value={password}
                         onChange={handleChange}
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        className="mt-1 block w-full border-gray-300 p-2 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                         placeholder='Enter your password'/>
                 </div>
                 <div className="flex items-center justify-center">

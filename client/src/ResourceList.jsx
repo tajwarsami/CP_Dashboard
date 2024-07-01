@@ -34,7 +34,7 @@ const ResourceList = () => {
 
 
   return (
-    <div className=" mx-auto py-10 px-4 bg-purple-600">
+    <div className="mx-auto py-10 px-4 bg-purple-600">
             <h1 className="text-2xl font-bold mb-4">Resources</h1>
             <div className="mb-4">
                 <input
