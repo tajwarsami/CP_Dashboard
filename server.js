@@ -29,29 +29,21 @@ const dbConfig = {
     database: 'contest_tracker'
 };
 
-// app.post('/api/signup/', async(req, res)=>{
-//     const {username, password} = req.body;
-//         try {
 
-//             const connection = await mysql.createConnection(dbConfig);
 
-//             const [existingUser] = await connection.execute('SELECT id FROM users where username=?', [username]);
-//             if (existingUser.length > 0) {
-//                 await connection.end();
-//                 return res.status(400).json({ msg: 'User already exists' });
-//             }
-
-//             const salt = await bcrypt.genSalt(10);
-//             const hashedPassword = await bcrypt.hash(password, salt);
-
-//             await connection.execute('INSERT INTO users (username,password) VALUES(?,?)', [username, password]);
-//             await connection.end();
-//             res.status(201).json({ msg: 'User created successfully' });
-            
-//         } catch (error) {
-//             res.status(500).json({ error: 'Server error' });
-//         }
-// })
+const authMiddleware = async (req, res, next) => {
+    const token = req.header('x-auth-token');
+    if (!token) {
+        return res.status(401).json({ msg: 'No token, authorization denied' });
+    }
+    try {
+        const decoded = jwt.verify(token, process.env.SECRET_KEY);
+        req.user = decoded.user;
+        next();
+    } catch (err) {
+        res.status(401).json({ msg: 'Token is not valid' });
+    }
+};
 
 app.post('/api/signup', async (req, res) => {
     const { username, password } = req.body;
@@ -120,6 +112,24 @@ app.post('/api/login', async(req, res)=>{
         
     }
 })
+
+
+app.get('/api/profile', authMiddleware, async (req, res) => {
+    try {
+        const connection = await mysql.createConnection(dbConfig);
+        const [rows] = await connection.execute('SELECT id, username FROM users WHERE id = ?', [req.user.id]);
+        if (rows.length === 0) {
+            await connection.end();
+            return res.status(404).json({ msg: 'User not found' });
+        }
+        const user = rows[0];
+        await connection.end();
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ error: 'Server error' });
+    }
+});
+
 
 app.get('/api/contests', async(req, res)=>{
        try {

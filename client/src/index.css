@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --navbar-height: 68px; 
+}
+
+.min-h-calc-screen {
+    @apply min-h-[calc(100vh-var(--navbar-height))];
+}
