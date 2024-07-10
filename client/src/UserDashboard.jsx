@@ -6,8 +6,8 @@ import { FaExternalLinkAlt } from 'react-icons/fa';
 const UserDashboard = () => {
     const [dashboardData, setDashboardData] = useState({
         upcomingContests: [],
-        bookmarkedContests: [],
-        recentActivity: []
+        bookmarkedContests: []
+      
     });
 
     useEffect(() => {
@@ -26,7 +26,7 @@ const UserDashboard = () => {
         fetchDashboardData();
     }, []);
 
-    const { upcomingContests, bookmarkedContests, recentActivity } = dashboardData;
+    const { upcomingContests, bookmarkedContests } = dashboardData;
 
     return (
         <div className="container mx-auto py-10 px-4">
@@ -80,20 +80,7 @@ const UserDashboard = () => {
                 </div>
             </section>
 
-            <section>
-                <h2 className="text-xl font-bold mb-4">Recent Activity</h2>
-                <div className="bg-white shadow-lg rounded-lg p-6">
-                    <ul>
-                        {recentActivity.map((activity, index) => (
-                            <li key={index} className="mb-4">
-                                <p className="text-gray-600">{activity.event_type}</p>
-                                <p className="text-gray-600">{activity.event_details}</p>
-                                <p className="text-gray-600">{new Date(activity.created_at).toLocaleString()}</p>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </section>
+         
 
         </div>
     );

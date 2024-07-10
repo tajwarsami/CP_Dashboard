@@ -168,8 +168,6 @@ const populateResources = async () => {
   }
 };
 
-
-
 const populateContests = async () => {
   try {
     const response = await axios.get("https://clist.by/api/v1/json/contest/", {
@@ -192,112 +190,118 @@ const populateContests = async () => {
       const resourceId =
         contest.resource.id !== undefined ? contest.resource.id : null;
 
-        if(id && event && start && end && resourceId){
-            try {
-                (await connection).execute(`
+      if (id && event && start && end && resourceId) {
+        try {
+          (await connection).execute(
+            `
                     INSERT INTO contests (id, event, start, end, resource_id) VALUES (?,?,?,?,?)
                     ON DUPLICATE KEY UPDATE 
                     event = VALUES(event),
                         start = VALUES(start),
                         end = VALUES(end),
-                       resource_id = VALUES(resource_id)`, [id, event, start, end, resourceId]);
-            } catch (error) {
-                console.error(`Error inserting contest with id ${id} and resource_id ${resourceId}:`, error);
-            }
+                       resource_id = VALUES(resource_id)`,
+            [id, event, start, end, resourceId]
+          );
+        } catch (error) {
+          console.error(
+            `Error inserting contest with id ${id} and resource_id ${resourceId}:`,
+            error
+          );
         }
-        else{
-            console.error(`Skipping contest with id ${id} due to missing required fields`);
-        }
+      } else {
+        console.error(
+          `Skipping contest with id ${id} due to missing required fields`
+        );
+      }
     }
 
     (await connection).end();
 
-    console.log('Contests populated successfully.');
+    console.log("Contests populated successfully.");
   } catch (error) {
-    console.error('Error populating contests:', error);
+    console.error("Error populating contests:", error);
   }
 };
-
 
 populateResources();
 populateContests();
 
-
-
-app.get('/api/user/dashbaord', authMiddleware, async(req, res) => {
-    try {
-        const userId = req.user.id;
-        const connection = await mysql.createConnection(dbConfig);
-
-
-        const [upcomingContests] = await connection.execute(`SELECT 
-            c.id, c.event, c.start, c.end, r.name AS resource_name
-            FROM contests c
-            JOIN resources r ON c.resource_id = r.id
-            WHERE c.start > NOW() AND c.id IN (SELECT contest_id FROM user_participation WHERE user_id = ?)
-            ORDER BY c.start ASC
-            LIMIT 5
-            `, [userId]);
-
-            const [bookmarkedContests] = await connection.execute(
-                `SELECT c.id, c.event, c.start, c.end, r.name AS resource_name
-                FROM contests c
-                JOIN resources r ON c.resource_id = r.id
-                WHERE c.id IN (SELECT contest_is FROM user_bookmarks WHERE user_id = ?)
-                ORDER BY c.start ASC
-                LIMIT 5
-                `, [userId]
-            );
-
-
-            await connection.end();
-
-            res.json({ upcomingContests, bookmarkedContests});
-        
-    } catch (error) {
-        res.status(500).json({ error: 'Failed to fetch user dashboard data' });
-    }
-})
-
-
-
-
-app.post('/api/contests/:id/participate', authMiddleware, async(req, res)=>{
+app.get("/api/user/dashboard", authMiddleware, async (req, res) => {
+  try {
     const userId = req.user.id;
-    const contestId = req.params.id;
+    const connection = await mysql.createConnection(dbConfig);
 
-    try {
-        const connection = await mysql.createConnection(dbConfig);
+    const [upcomingContests] = await connection.execute(
+      `
+          SELECT c.id, c.event, c.start, c.end, r.name as resource_name
+          FROM contests c
+          JOIN resources r ON c.resource_id = r.id
+          WHERE c.start > NOW() AND c.id IN (SELECT contest_id FROM user_participation WHERE user_id = ?)
+          ORDER BY c.start ASC
+          LIMIT 5
+      `,
+      [userId]
+    );
 
-        await connection.execute(`INSERT INTO user_participation (user_id, contest_id) VALUES(?, ?) `, [userId, contestId]);
+    const [bookmarkedContests] = await connection.execute(
+      `
+        SELECT c.id, c.event, c.start, c.end, r.name as resource_name
+        FROM contests c
+        JOIN resources r ON c.resource_id = r.id
+        WHERE c.id IN (SELECT contest_id FROM user_bookmarks WHERE user_id = ?)
+        ORDER BY c.start ASC
+        LIMIT 5
+    `,
+      [userId]
+    );
 
-        await connection.end();
+    await connection.end();
 
-        res.status(200).json({ msg: 'Marked as participating' });
+    res.json({ upcomingContests, bookmarkedContests });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch user dashboard data" });
+  }
+});
 
-    } catch (error) {
-        res.status(500).json({error: 'Failed to mark participate contest'});
-    }
-})
+app.post("/api/contests/:id/participate", authMiddleware, async (req, res) => {
+  const userId = req.user.id;
+  const contestId = req.params.id;
 
+  try {
+    const connection = await mysql.createConnection(dbConfig);
 
-app.post('/api/contests/:id/bookmark', authMiddleware, async(req, res) => {
-    const userId = req.user.id;
-    const contestId = req.params.id;
+    await connection.execute(
+      `INSERT INTO user_participation (user_id, contest_id) VALUES(?, ?) `,
+      [userId, contestId]
+    );
 
-    try {
-        const connection = await mysql.createConnection(dbConfig);
+    await connection.end();
 
-       await connection.execute(`INSERT INTO user_bookmarks (user_id, contest_id) VALUES(?,?)`, [userId, contestId]);
+    res.status(200).json({ msg: "Marked as participating" });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to mark participate contest" });
+  }
+});
 
-        await connection.end();
+app.post("/api/contests/:id/bookmark", authMiddleware, async (req, res) => {
+  const userId = req.user.id;
+  const contestId = req.params.id;
 
-        res.status(200).json({ msg: 'Bookmarked successfully' });
-    } catch (error) {
-        res.status(500).json({ error: 'Failed to bookmark contest' });
-    }
-})
+  try {
+    const connection = await mysql.createConnection(dbConfig);
 
+    await connection.execute(
+      `INSERT INTO user_bookmarks (user_id, contest_id) VALUES(?,?)`,
+      [userId, contestId]
+    );
+
+    await connection.end();
+
+    res.status(200).json({ msg: "Bookmarked successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to bookmark contest" });
+  }
+});
 
 app.get("/api/contests", async (req, res) => {
   try {
