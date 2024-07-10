@@ -48,6 +48,35 @@ const ContestDetails = () => {
         }
     }, [contest]);
 
+
+    const handleParticipate = async() => {
+        try {
+            const token = localStorage.getItem('token');
+            await axios.post(`http://localhost:5000/api/contests/${id}/participate`, {}, {
+                headers:{'x-auth-token': token}
+            });
+
+            alert('Marked as participating!');
+        } catch (error) {
+            alert('Failed to mark as participating. Please try again later.');
+        }
+    }
+
+   
+    
+    const handleBookmark = async() => {
+        try {
+            const token = localStorage.getItem('token');
+
+            await axios.post(`http://localhost:5000/api/contests/${id}/bookmark`, {}, {
+                headers: {'x-auth-token': token}
+            });
+            alert('Bookmarked successfully!');
+        } catch (error) {
+            alert('Failed to bookmark contest. Please try again later.');
+        }
+    }
+
     if (!contest) {
         return <div>Loading...</div>;
     }
@@ -83,6 +112,15 @@ const ContestDetails = () => {
                             Visit Contest Page <FaExternalLinkAlt className="ml-1"/>
                         </a>
                     </div>
+                </div>
+
+                <div className="mt-4">
+                    <button onClick={handleParticipate} className="bg-blue-500 text-white px-4 py-2 rounded mr-4">
+                        Participate
+                    </button>
+                    <button onClick={handleBookmark} className="bg-green-500 text-white px-4 py-2 rounded">
+                        Bookmark
+                    </button>
                 </div>
             </div>
         </div>

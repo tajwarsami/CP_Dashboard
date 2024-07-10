@@ -224,13 +224,13 @@ populateContests();
 
 
 
-app.get('api/user/dashbaord', authMiddleware, async(req, res) => {
+app.get('/api/user/dashbaord', authMiddleware, async(req, res) => {
     try {
         const userId = req.user.id;
         const connection = await mysql.createConnection(dbConfig);
 
 
-        const [upcomingContests] = await mysql.execute(`SELECT 
+        const [upcomingContests] = await connection.execute(`SELECT 
             c.id, c.event, c.start, c.end, r.name AS resource_name
             FROM contests c
             JOIN resources r ON c.resource_id = r.id
@@ -239,7 +239,7 @@ app.get('api/user/dashbaord', authMiddleware, async(req, res) => {
             LIMIT 5
             `, [userId]);
 
-            const [bookmarkedContests] = await mysql.execute(
+            const [bookmarkedContests] = await connection.execute(
                 `SELECT c.id, c.event, c.start, c.end, r.name AS resource_name
                 FROM contests c
                 JOIN resources r ON c.resource_id = r.id
@@ -256,6 +256,45 @@ app.get('api/user/dashbaord', authMiddleware, async(req, res) => {
         
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch user dashboard data' });
+    }
+})
+
+
+
+
+app.post('/api/contests/:id/participate', authMiddleware, async(req, res)=>{
+    const userId = req.user.id;
+    const contestId = req.params.id;
+
+    try {
+        const connection = await mysql.createConnection(dbConfig);
+
+        await connection.execute(`INSERT INTO user_participation (user_id, contest_id) VALUES(?, ?) `, [userId, contestId]);
+
+        await connection.end();
+
+        res.status(200).json({ msg: 'Marked as participating' });
+
+    } catch (error) {
+        res.status(500).json({error: 'Failed to mark participate contest'});
+    }
+})
+
+
+app.post('/api/contests/:id/bookmark', authMiddleware, async(req, res) => {
+    const userId = req.user.id;
+    const contestId = req.params.id;
+
+    try {
+        const connection = await mysql.createConnection(dbConfig);
+
+       await connection.execute(`INSERT INTO user_bookmarks (user_id, contest_id) VALUES(?,?)`, [userId, contestId]);
+
+        await connection.end();
+
+        res.status(200).json({ msg: 'Bookmarked successfully' });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to bookmark contest' });
     }
 })
 
