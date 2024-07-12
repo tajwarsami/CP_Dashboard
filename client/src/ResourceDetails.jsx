@@ -29,7 +29,11 @@ const ResourceDetails = () => {
     const resourceImageUrl = imageMap[resource.name] ;
 
     return (
-        <div className="container mx-auto py-10 px-4">
+        <div className="mx-auto py-10 px-4 min-h-calc-screen"
+     style={{
+         backgroundColor: '#000000',
+         backgroundImage: 'linear-gradient(315deg, #000000 0%, #5e5368 74%)',
+     }}>
             <div className="bg-white shadow-lg rounded-lg p-6">
                 <div className="flex items-center">
                     <img src={resourceImageUrl} alt={resource.name} className="w-15 h-15 rounded-full mr-6" />

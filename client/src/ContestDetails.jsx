@@ -84,7 +84,11 @@ const ContestDetails = () => {
     const contestImageUrl = imageMap[contest.resource.name] || '/images/default.png';
 
     return (
-        <div className="container mx-auto py-10 px-4">
+        <div className="mx-auto py-10 px-4 min-h-calc-screen"
+     style={{
+         backgroundColor: '#000000',
+         backgroundImage: 'linear-gradient(315deg, #000000 0%, #5e5368 74%)',
+     }}>
             <div className="bg-white shadow-lg rounded-lg p-6">
                 <div className="flex items-center">
                     <img src={contestImageUrl} alt={contest.resource.name} className="w-20 h-20 rounded-full mr-6" />

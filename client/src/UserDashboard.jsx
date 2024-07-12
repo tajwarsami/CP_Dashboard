@@ -29,14 +29,18 @@ const UserDashboard = () => {
     const { upcomingContests, bookmarkedContests } = dashboardData;
 
     return (
-        <div className="container mx-auto py-10 px-4">
+        <div className="mx-auto py-10 px-4 min-h-calc-screen"
+     style={{
+         backgroundColor: '#000000',
+         backgroundImage: 'linear-gradient(315deg, #000000 0%, #5e5368 74%)',
+     }}>
             <h1 className="text-2xl font-bold mb-4">User Dashboard</h1>
 
             <section className="mb-8">
                 <h2 className="text-xl font-bold mb-4">Upcoming Contests</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {upcomingContests.map(contest => (
-                        <div key={contest.id} className="bg-white shadow-lg rounded-lg p-6">
+                        <div key={contest.id} className="shadow-lg rounded-lg p-6 bg-purple-300">
                             <h3 className="text-lg font-bold">
                                 <Link to={`/contest/${contest.id}`} className="hover:underline">{contest.event}</Link>
                             </h3>
@@ -60,7 +64,7 @@ const UserDashboard = () => {
                 <h2 className="text-xl font-bold mb-4">Bookmarked Contests</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {bookmarkedContests.map(contest => (
-                        <div key={contest.id} className="bg-white shadow-lg rounded-lg p-6">
+                        <div key={contest.id} className="shadow-lg rounded-lg p-6 bg-purple-300">
                             <h3 className="text-lg font-bold">
                                 <Link to={`/contest/${contest.id}`} className="hover:underline">{contest.event}</Link>
                             </h3>

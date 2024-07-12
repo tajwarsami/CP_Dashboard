@@ -34,7 +34,11 @@ const ResourceList = () => {
 
 
   return (
-    <div className="mx-auto py-10 px-4 bg-purple-600">
+    <div className="mx-auto py-10 px-4 min-h-calc-screen"
+     style={{
+         backgroundColor: '#000000',
+         backgroundImage: 'linear-gradient(315deg, #000000 0%, #5e5368 74%)',
+     }}>
             <h1 className="text-2xl font-bold mb-4">Resources</h1>
             <div className="mb-4">
                 <input
