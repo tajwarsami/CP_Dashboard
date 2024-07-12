@@ -2,8 +2,11 @@ import React from 'react';
 
 const About = () => {
     return (
-        <div className="container mx-auto py-10 px-4 grid bg-white shadow-lg ">
-
+        <div className="mx-auto py-10 px-4 min-h-calc-screen"
+     style={{
+         backgroundColor: '#000000',
+         backgroundImage: 'linear-gradient(315deg, #000000 0%, #5e5368 74%)',
+     }}>
             <div className='flex flex-col items-center'>
             <h1 className="text-3xl font-bold mb-4">About Us</h1>
             <p className="text-lg">
