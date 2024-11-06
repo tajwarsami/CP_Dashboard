@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
     return (
-        <div className="mx-auto py-10 px-4 min-h-calc-screen"
-     style={{
-         backgroundColor: '#000000',
-         backgroundImage: 'linear-gradient(315deg, #000000 0%, #5e5368 74%)',
-     }}>
+        <div className="mx-auto py-10 px-4 min-h-calc-screen bg-slate-800"
+    //  style={{
+    //      backgroundColor: '#000000',
+    //      backgroundImage: 'linear-gradient(315deg, #000000 0%, #5e5368 74%)',
+    //  }}
+    >
     <h1 className="text-4xl text-white font-bold mb-8 text-center">Welcome to Contest Tracker</h1>
     <p className="text-lg text-white mb-8 text-center">
         Your one-stop solution for tracking programming contests from various platforms. Stay updated with the latest contests and resources to enhance your competitive programming skills.
