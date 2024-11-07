@@ -85,10 +85,9 @@ const ContestDetails = () => {
 
     return (
         <div className="mx-auto py-10 px-4 min-h-calc-screen"
-     style={{
-         backgroundColor: '#000000',
-         backgroundImage: 'linear-gradient(315deg, #000000 0%, #5e5368 74%)',
-     }}>
+        style={{
+            background: '#4DB6AC', // Tailwind CSS color teal-900
+          }}>
             <div className="bg-white shadow-lg rounded-lg p-6">
                 <div className="flex items-center">
                     <img src={contestImageUrl} alt={contest.resource.name} className="w-20 h-20 rounded-full mr-6" />

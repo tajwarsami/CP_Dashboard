@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FaFacebook, FaGithub, FaLinkedin, FaEdit } from 'react-icons/fa';
+import { FaFacebook, FaGithub, FaTwitter, FaInstagram, FaEdit, FaLink } from 'react-icons/fa';
 
 const Profile = () => {
     const [user, setUser] = useState(null);
@@ -28,88 +28,82 @@ const Profile = () => {
     }
 
     return (
-        <div
-        className="min-h-screen flex items-end justify-center"
-        style={{
-          backgroundColor: '#000000',
-          backgroundImage: 'linear-gradient(315deg, #000000 0%, #5e5368 74%)',
-          position: 'relative'
-        }}
-      >
-        <div
-          className="shadow-md rounded-lg flex w-full"
-          style={{
-            height: '75vh', // Adjust the height to 75% of the viewport height
-            backgroundColor: '#e2e8f0', // Change the background color of the box
-            position: 'relative'
-          }}
-        >
-          {/* Left Side - Profile Picture and Social Media Links */}
-          <div className="bg-black p-6 flex flex-col items-center w-1/2 relative">
-            <div
-              className=" shadow-md mb-4"
-              style={{
-                marginTop: '-150px', // Move it up to overlap the outer div
-                zIndex: 10 // Ensure the image is on top
-              }}
-            >
-              <img
-                src="https://via.placeholder.com/300"
-                alt="Profile"
-                className="w-300 h-300 object-cover"
-                style={{
-                  width: '300px', // Increase the width
-                  height: '250px', // Increase the height
-                }}
-              />
-            </div>
-            <p className="text-gray-200 mb-10 mt-4">
-              <strong>Username: </strong>
-              {user.username}
-            </p>
-            <div className="flex space-x-4">
-              <a href="https://www.facebook.com/" className="text-white hover:text-blue-300">
-                <FaFacebook size={24} />
-              </a>
-              <a href="https://github.com/" className="text-white hover:text-gray-300">
-                <FaGithub size={24} />
-              </a>
-              <a href="https://www.linkedin.com/" className="text-white hover:text-blue-300">
-                <FaLinkedin size={24} />
-              </a>
-            </div>
-          </div>
-      
-          {/* Right Side - User Details and Edit Profile Link */}
-          <div className="bg-red-300 p-6 w-1/2">
-            <h1 className="text-2xl font-bold mb-4 text-gray-800">Profile</h1>
-            <div className="mb-4">
-              <p className="text-gray-700">
-                <strong>Full Name:</strong> {user.fullname || 'Not provided'}
-              </p>
-              <p className="text-gray-700">
-                <strong>Email:</strong> {user.email || 'Not provided'}
-              </p>
-              <p className="text-gray-700">
-                <strong>Address:</strong> {user.address || 'Not provided'}
-              </p>
-              <p className="text-gray-700">
-                <strong>Education:</strong> {user.education || 'Not provided'}
-              </p>
-              <p className="text-gray-700">
-                <strong>Phone Number:</strong> {user.phone || 'Not provided'}
-              </p>
-            </div>
-            <div className="text-center">
-              <a href="/edit-profile" className="text-gray-600 hover:underline flex items-center justify-center">
-                <FaEdit className="mr-2" /> Edit Profile
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      
+        <div className="min-h-screen flex justify-center bg-teal-900 py-10">
+            <div className="w-4/5 lg:w-3/4 grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+                
+                {/* Left Upper - Profile Picture, Follow & Message */}
+                <div className="bg-teal-300 p-4 rounded-lg shadow-md flex flex-col items-center text-black">
+                    <img
+                        src="https://via.placeholder.com/150"
+                        alt="Profile"
+                        className="w-32 h-32 rounded-full shadow-md mb-4"
+                    />
+                    <h2 className="text-2xl font-semibold mb-4">{user.username || 'John Doe'}</h2>
+                    <div className="flex space-x-4 mb-4">
+                        <button className="bg-blue-500 text-white px-4 py-2 rounded">Follow</button>
+                        <button className="bg-gray-500 text-white px-4 py-2 rounded">Message</button>
+                    </div>
+                </div>
 
+                {/* Right Upper - User Details */}
+                <div className="bg-teal-300 p-4 rounded-lg shadow-md text-black">
+                    <h3 className="text-xl font-semibold mb-4">User Details</h3>
+                    <div className="space-y-2">
+                        <p><strong>Full Name:</strong> {user.fullname || 'Not provided'}</p>
+                        <p><strong>Email:</strong> {user.email || 'Not provided'}</p>
+                        <p><strong>Phone:</strong> {user.phone || 'Not provided'}</p>
+                        <p><strong>Address:</strong> {user.address || 'Not provided'}</p>
+                        <p><strong>Nickname:</strong> {user.nickname || 'Not provided'}</p>
+                    </div>
+                    <div className="mt-4 text-center">
+                        <a href="/edit-profile" className="text-blue-600 hover:underline flex items-center justify-center">
+                            <FaEdit className="mr-2" /> Edit Profile
+                        </a>
+                    </div>
+                </div>
+
+                {/* Left Lower - Social Media Links */}
+                <div className="bg-teal-300 p-4 rounded-lg shadow-md text-black">
+                    <h3 className="text-lg font-semibold mb-4 text-center">Social Links</h3>
+                    <div className="space-y-2">
+                        <a href="https://www.website.com" className="flex items-center text-blue-600 hover:underline">
+                            <FaLink className="mr-2" /> Website
+                        </a>
+                        <a href="https://github.com/" className="flex items-center text-gray-800 hover:underline">
+                            <FaGithub className="mr-2" /> GitHub
+                        </a>
+                        <a href="https://twitter.com/" className="flex items-center text-blue-400 hover:underline">
+                            <FaTwitter className="mr-2" /> Twitter
+                        </a>
+                        <a href="https://instagram.com/" className="flex items-center text-pink-500 hover:underline">
+                            <FaInstagram className="mr-2" /> Instagram
+                        </a>
+                        <a href="https://facebook.com/" className="flex items-center text-blue-700 hover:underline">
+                            <FaFacebook className="mr-2" /> Facebook
+                        </a>
+                    </div>
+                </div>
+
+                {/* Right Lower - Project Status */}
+                <div className="bg-teal-300 p-4 rounded-lg shadow-md text-black">
+                    <h4 className="text-lg font-semibold mb-4">Project Status</h4>
+                    <div className="space-y-2">
+                        {['Web Design', 'Website Markup', 'One Page', 'Mobile Template', 'Backend API'].map((project, index) => (
+                            <div key={index}>
+                                <p>{project}</p>
+                                <div className="w-full bg-gray-300 rounded h-2.5 mb-2">
+                                    <div
+                                        className="bg-blue-500 h-2.5 rounded"
+                                        style={{ width: `${(index + 1) * 20}%` }}
+                                    ></div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+            </div>
+        </div>
     );
 };
 
