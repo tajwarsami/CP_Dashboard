@@ -107,7 +107,16 @@ const imageMap = {
     'lit.lhsmathcs.org': '/images/lit.png',
     'mitit.org': '/images/mitit.png',
     'acm.bsu.by': '/images/bsu.jpeg',
-    'dmoj.ca': '/images/dmoj.png'
+    'dmoj.ca': '/images/dmoj.png',
+    'coliseum.ai': '/images/coliseum.jpeg',
+    'usaco.guide': '/images/usaco.png',
+    'challenges.reply.com': '/images/reply.png',
+    'binarysearch.com': '/images/bin.png',
+    'azspcs.com': '/images/azspcs.jpeg',
+    'facebook.com/hackercup': '/images/hac.png',
+    'judge.beecrowd.com': '/images/beecrowd.jpeg',
+    'supecoder.dev': '/images/super.png',
+    'bestcoder.hdu.edu.cn': '/images/best.jpeg'
    
 };
 

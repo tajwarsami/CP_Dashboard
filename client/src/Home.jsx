@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
     return (
-        <div className="mx-auto py-10 px-4 min-h-calc-screen bg-slate-800"
+        <div className="mx-auto py-10 px-4 min-h-calc-screen bg-teal-900"
     //  style={{
     //      backgroundColor: '#000000',
     //      backgroundImage: 'linear-gradient(315deg, #000000 0%, #5e5368 74%)',
@@ -15,21 +15,21 @@ const Home = () => {
     </p>
 
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <Link to="/contests" className="block bg-indigo-300 shadow-lg rounded-lg p-6 hover:shadow-2xl transition-shadow">
+        <Link to="/contests" className="block bg-teal-100 shadow-lg rounded-lg p-6 hover:shadow-2xl transition-shadow">
             <div className="flex flex-col items-center">
                 <img src="/images/contest.png" alt="Contests" className="w-24 h-24 mb-4" />
                 <h2 className="text-2xl font-bold mb-2">Contests</h2>
                 <p className="text-gray-600 text-center">Explore upcoming and ongoing programming contests from various platforms.</p>
             </div>
         </Link>
-        <Link to="/resources" className="block shadow-lg rounded-lg p-6 bg-indigo-300 hover:shadow-2xl transition-shadow">
+        <Link to="/resources" className="block shadow-lg rounded-lg p-6 bg-teal-100 hover:shadow-2xl transition-shadow">
             <div className="flex flex-col items-center">
                 <img src="/images/resource.png" alt="Resources" className="w-24 h-24 mb-4 rounded-full" />
                 <h2 className="text-2xl font-bold mb-2">Resources</h2>
                 <p className="text-gray-600 text-center">Find valuable resources to help you improve your competitive programming skills.</p>
             </div>
         </Link>
-        <Link to="/about" className="block bg-indigo-300 shadow-lg rounded-lg p-6 hover:shadow-2xl transition-shadow">
+        <Link to="/about" className="block bg-teal-100 shadow-lg rounded-lg p-6 hover:shadow-2xl transition-shadow">
             <div className="flex flex-col items-center">
                 <img src="/images/about.png" alt="About Us" className="w-24 h-24 mb-4" />
                 <h2 className="text-2xl font-bold mb-2">About Us</h2>
