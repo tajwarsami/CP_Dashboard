@@ -66,19 +66,19 @@ const Profile = () => {
                 <div className="bg-teal-300 p-4 rounded-lg shadow-md text-black">
                     <h3 className="text-lg font-semibold mb-4 text-center">Social Links</h3>
                     <div className="space-y-2">
-                        <a href="https://www.website.com" className="flex items-center text-blue-600 hover:underline">
+                        <a href="https://www.website.com" className="flex items-center text-black hover:underline">
                             <FaLink className="mr-2" /> Website
                         </a>
-                        <a href="https://github.com/" className="flex items-center text-gray-800 hover:underline">
+                        <a href="https://github.com/" className="flex items-center text-black hover:underline">
                             <FaGithub className="mr-2" /> GitHub
                         </a>
-                        <a href="https://twitter.com/" className="flex items-center text-blue-400 hover:underline">
+                        <a href="https://twitter.com/" className="flex items-center text-black hover:underline">
                             <FaTwitter className="mr-2" /> Twitter
                         </a>
-                        <a href="https://instagram.com/" className="flex items-center text-pink-500 hover:underline">
+                        <a href="https://instagram.com/" className="flex items-center text-black hover:underline">
                             <FaInstagram className="mr-2" /> Instagram
                         </a>
-                        <a href="https://facebook.com/" className="flex items-center text-blue-700 hover:underline">
+                        <a href="https://facebook.com/" className="flex items-center text-black hover:underline">
                             <FaFacebook className="mr-2" /> Facebook
                         </a>
                     </div>
