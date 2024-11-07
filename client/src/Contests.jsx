@@ -47,7 +47,7 @@ const Contests = () => {
          background: '#000000',
          backgroundImage: 'linear-gradient(315deg, #000000 0%, #5e5368 74%)',
      }}>
-    <div className="">
+    <div >
         <h1 className="text-2xl font-bold mb-4 text-white">Upcoming Contests</h1>
         <div className="flex justify-between mb-4">
             <div className="flex items-center space-x-4">
