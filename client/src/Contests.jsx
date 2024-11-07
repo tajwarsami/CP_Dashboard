@@ -85,7 +85,7 @@ const Contests = () => {
     </div>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredContests.map((contest) => (
-            <div key={contest.id} className="shadow-lg rounded-lg p-6 bg-purple-300">
+            <div key={contest.id} className="shadow-lg rounded-lg p-6 bg-slate-300">
                 <div className="flex items-center">
                     <img
                         src={
