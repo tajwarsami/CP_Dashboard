@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const LogIn = ({ setIsAuthenticated }) => {
     const [formData, setFormData] = useState({
@@ -7,6 +8,8 @@ const LogIn = ({ setIsAuthenticated }) => {
         password: ''
     });
     const [errors, setErrors] = useState(null);
+    const navigate = useNavigate();
+    const [message, setMessage] = useState('');
 
     const { username, password } = formData;
 
@@ -16,12 +19,20 @@ const LogIn = ({ setIsAuthenticated }) => {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
+       
+        if (!username || !password) {
+            setMessage('Please enter both username and password.');
+            return;
+        }
         try {
             const response = await axios.post('http://localhost:5000/api/login', formData);
             localStorage.setItem('token', response.data.token);
             setIsAuthenticated(true);
+            navigate('/');
         } catch (error) {
             setErrors(error.response.data.msg);
+            setMessage(error.response?.data?.msg || 'Error signing in');
         }
     };
 
@@ -66,6 +77,7 @@ const LogIn = ({ setIsAuthenticated }) => {
                         Sign In
                     </button>
                 </div>
+                {message && <p className="mt-2 text-center text-red-600">{message}</p>}
             </form>
         
     </div>
