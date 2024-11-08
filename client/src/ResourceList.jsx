@@ -40,7 +40,7 @@ const ResourceList = () => {
         background: '#134e4a', // Tailwind CSS color teal-900
       }}
     >
-            <h1 className="text-2xl font-bold mb-4">Resources</h1>
+            <h1 className="text-2xl font-bold mb-4 text-white">Resources</h1>
             <div className="mb-4">
                 <input
                     type="text"
@@ -52,7 +52,7 @@ const ResourceList = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredResources.map((resource) => (
-                    <div key={resource.id} className="bg-teal-300 shadow-lg rounded-lg p-6">
+                    <div key={resource.id} className="bg-teal-100 shadow-lg rounded-lg p-6">
                         <div className="flex items-center">
                             <img src={imageMap[resource.name]} alt={resource.name} className="w-16 h-16 rounded-full mr-4" />
                             <div>

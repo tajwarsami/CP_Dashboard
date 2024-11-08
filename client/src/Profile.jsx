@@ -32,7 +32,7 @@ const Profile = () => {
             <div className="w-4/5 lg:w-3/4 grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
                 
                 {/* Left Upper - Profile Picture, Follow & Message */}
-                <div className="bg-teal-300 p-4 rounded-lg shadow-md flex flex-col items-center text-black">
+                <div className="bg-teal-100 p-4 rounded-lg shadow-md flex flex-col items-center text-black">
                     <img
                         src="https://via.placeholder.com/150"
                         alt="Profile"
@@ -46,7 +46,7 @@ const Profile = () => {
                 </div>
 
                 {/* Right Upper - User Details */}
-                <div className="bg-teal-300 p-4 rounded-lg shadow-md text-black">
+                <div className="bg-teal-100 p-4 rounded-lg shadow-md text-black">
                     <h3 className="text-xl font-semibold mb-4">User Details</h3>
                     <div className="space-y-2">
                         <p><strong>Full Name:</strong> {user.fullname || 'Not provided'}</p>
@@ -63,7 +63,7 @@ const Profile = () => {
                 </div>
 
                 {/* Left Lower - Social Media Links */}
-                <div className="bg-teal-300 p-4 rounded-lg shadow-md text-black">
+                <div className="bg-teal-100 p-4 rounded-lg shadow-md text-black">
                     <h3 className="text-lg font-semibold mb-4 text-center">Social Links</h3>
                     <div className="space-y-2">
                         <a href="https://www.website.com" className="flex items-center text-black hover:underline">
@@ -85,7 +85,7 @@ const Profile = () => {
                 </div>
 
                 {/* Right Lower - Project Status */}
-                <div className="bg-teal-300 p-4 rounded-lg shadow-md text-black">
+                <div className="bg-teal-100 p-4 rounded-lg shadow-md text-black">
                     <h4 className="text-lg font-semibold mb-4">Project Status</h4>
                     <div className="space-y-2">
                         {['Web Design', 'Website Markup', 'One Page', 'Mobile Template', 'Backend API'].map((project, index) => (
