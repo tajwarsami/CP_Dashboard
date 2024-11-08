@@ -189,18 +189,23 @@ const populateContests = async () => {
       const end = contest.end !== undefined ? contest.end : null;
       const resourceId =
         contest.resource.id !== undefined ? contest.resource.id : null;
+      const duration = contest.duration !== undefined ? contest.duration : null;
+      const href = contest.href !== undefined ? contest.href : null;
 
-      if (id && event && start && end && resourceId) {
+      if (id && event && start && end && resourceId && duration && href) {
         try {
           (await connection).execute(
             `
-                    INSERT INTO contests (id, event, start, end, resource_id) VALUES (?,?,?,?,?)
+                    INSERT INTO contests (id, event, start, end, resource_id, duration, href) 
+                    VALUES (?,?,?,?,?,?,?)
                     ON DUPLICATE KEY UPDATE 
                     event = VALUES(event),
-                        start = VALUES(start),
-                        end = VALUES(end),
-                       resource_id = VALUES(resource_id)`,
-            [id, event, start, end, resourceId]
+                    start = VALUES(start),
+                    end = VALUES(end),
+                    resource_id = VALUES(resource_id),
+                    duration = VALUES(duration),
+                    href = VALUES(href)`,
+            [id, event, start, end, resourceId, duration, href]
           );
         } catch (error) {
           console.error(
