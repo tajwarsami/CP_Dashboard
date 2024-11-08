@@ -86,6 +86,7 @@ const Contests = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredContests.map((contest) => (
+
           <div key={contest.id} className="shadow-lg rounded-lg p-6 bg-teal-100">
             <div className="flex items-center">
               <img
@@ -113,6 +114,7 @@ const Contests = () => {
                   End: {new Date(contest.end).toLocaleString()}
                 </p>
               </div>
+
             </div>
           </div>
         ))}
