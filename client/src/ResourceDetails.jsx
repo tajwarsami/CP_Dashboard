@@ -29,10 +29,8 @@ const ResourceDetails = () => {
     const resourceImageUrl = imageMap[resource.name] ;
 
     return (
-        <div className="mx-auto py-10 px-4 min-h-calc-screen"
-        style={{
-            background: '#4DB6AC', // Tailwind CSS color teal-300
-          }}>
+        <div className="mx-auto py-10 px-4 min-h-calc-screen bg-teal-800"
+       >
             <div className="bg-white shadow-lg rounded-lg p-6">
                 <div className="flex items-center">
                     <img src={resourceImageUrl} alt={resource.name} className="w-15 h-15 rounded-full mr-6" />

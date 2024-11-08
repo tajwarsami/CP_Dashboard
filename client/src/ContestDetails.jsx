@@ -84,10 +84,8 @@ const ContestDetails = () => {
     const contestImageUrl = imageMap[contest.resource.name] || '/images/default.png';
 
     return (
-        <div className="mx-auto py-10 px-4 min-h-calc-screen"
-        style={{
-            background: '#4DB6AC', // Tailwind CSS color teal-900
-          }}>
+        <div className="mx-auto py-10 px-4 min-h-calc-screen bg-teal-800"
+       >
             <div className="bg-white shadow-lg rounded-lg p-6">
                 <div className="flex items-center">
                     <img src={contestImageUrl} alt={contest.resource.name} className="w-20 h-20 rounded-full mr-6" />
