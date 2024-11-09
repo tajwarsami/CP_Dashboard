@@ -31,10 +31,10 @@ const Profile = () => {
         <div className="min-h-screen flex justify-center bg-teal-900 py-10">
             <div className="w-4/5 lg:w-3/4 grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
                 
-                {/* Left Upper - Profile Picture, Follow & Message */}
+
                 <div className="bg-teal-100 p-4 rounded-lg shadow-md flex flex-col items-center text-black">
                     <img
-                        src="https://via.placeholder.com/150"
+                        src={user.profilePicture || "/images/profile.jpeg"}
                         alt="Profile"
                         className="w-32 h-32 rounded-full shadow-md mb-4"
                     />
@@ -45,7 +45,7 @@ const Profile = () => {
                     </div>
                 </div>
 
-                {/* Right Upper - User Details */}
+                
                 <div className="bg-teal-100 p-4 rounded-lg shadow-md text-black">
                     <h3 className="text-xl font-semibold mb-4">User Details</h3>
                     <div className="space-y-2">
@@ -62,45 +62,54 @@ const Profile = () => {
                     </div>
                 </div>
 
-                {/* Left Lower - Social Media Links */}
+               
                 <div className="bg-teal-100 p-4 rounded-lg shadow-md text-black">
                     <h3 className="text-lg font-semibold mb-4 text-center">Social Links</h3>
                     <div className="space-y-2">
-                        <a href="https://www.website.com" className="flex items-center text-black hover:underline">
+                        <a href="https://www.website.com"  className="flex items-center text-black hover:underline">
                             <FaLink className="mr-2" /> Website
                         </a>
-                        <a href="https://github.com/" className="flex items-center text-black hover:underline">
+                        <a href="https://github.com/"  target="_blank" 
+                            rel="noopener noreferrer"  className="flex items-center text-black hover:underline">
                             <FaGithub className="mr-2" /> GitHub
                         </a>
-                        <a href="https://twitter.com/" className="flex items-center text-black hover:underline">
+                        <a href="https://twitter.com/"  target="_blank" 
+                            rel="noopener noreferrer" className="flex items-center text-black hover:underline">
                             <FaTwitter className="mr-2" /> Twitter
                         </a>
-                        <a href="https://instagram.com/" className="flex items-center text-black hover:underline">
+                        <a href="https://instagram.com/"  target="_blank" 
+                            rel="noopener noreferrer" className="flex items-center text-black hover:underline">
                             <FaInstagram className="mr-2" /> Instagram
                         </a>
-                        <a href="https://facebook.com/" className="flex items-center text-black hover:underline">
+                        <a href="https://facebook.com/"  target="_blank" 
+                            rel="noopener noreferrer" className="flex items-center text-black hover:underline">
                             <FaFacebook className="mr-2" /> Facebook
                         </a>
                     </div>
                 </div>
 
-                {/* Right Lower - Project Status */}
+            
                 <div className="bg-teal-100 p-4 rounded-lg shadow-md text-black">
-                    <h4 className="text-lg font-semibold mb-4">Project Status</h4>
-                    <div className="space-y-2">
-                        {['Web Design', 'Website Markup', 'One Page', 'Mobile Template', 'Backend API'].map((project, index) => (
-                            <div key={index}>
-                                <p>{project}</p>
-                                <div className="w-full bg-gray-300 rounded h-2.5 mb-2">
-                                    <div
-                                        className="bg-blue-500 h-2.5 rounded"
-                                        style={{ width: `${(index + 1) * 20}%` }}
-                                    ></div>
-                                </div>
-                            </div>
-                        ))}
+    <h4 className="text-lg font-semibold mb-4">Problem-Solving Accuracy</h4>
+    <div className="space-y-2">
+        {['LeetCode', 'HackerRank', 'CodeChef', 'CodeForces', 'AtCoder'].map((platform, index) => {
+            const accuracy = Math.floor(Math.random() * 101); // Random accuracy between 0 and 100%
+            return (
+                <div key={index}>
+                    <p>{platform}</p>
+                    <div className="w-full bg-gray-300 rounded h-2.5 mb-2">
+                        <div
+                            className="bg-blue-500 h-2.5 rounded"
+                            style={{ width: `${accuracy}%` }}
+                        ></div>
                     </div>
+                    <p className="text-sm text-gray-700">{accuracy}% accuracy</p>
                 </div>
+            );
+        })}
+    </div>
+</div>
+
 
             </div>
         </div>

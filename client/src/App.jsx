@@ -9,11 +9,12 @@ import Contests from './Contests';
 import ContestDetails from './ContestDetails';
 import ResourceList from './ResourceList';
 import SignUp from './SignUp';
-import LogIn from './LogIn';
+import LogIn from './Login';
 import Profile from './Profile';
 import About from './About';
 import ResourceDetails from './ResourceDetails';
 import UserDashboard from './UserDashboard';
+import Problem from './Problem';
 
 const App = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -55,6 +56,7 @@ const App = () => {
                             {isAuthenticated ? (
                                 <>
                                     <Link to="/dashboard" className="hover:underline py-1 lg:py-0">Dashboard</Link>
+                                    <Link to="/problem" className="hover:underline py-1 lg:py-0">Problem</Link>
                                     <Link to="/profile" className="hover:underline py-1 lg:py-0">Profile</Link>
                                     <button onClick={handleLogout} className="hover:underline py-1 lg:py-0">Logout</button>
                                 </>
@@ -75,6 +77,7 @@ const App = () => {
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/login" element={<LogIn setIsAuthenticated={setIsAuthenticated} />} />
                     <Route path="/profile" element={isAuthenticated ? <Profile /> : <Navigate to="/login" replace />} />
+                    <Route path='/problem' element={isAuthenticated ? <Problem/> : <Navigate to="/login" replace />} />
                     <Route path="/contests/:id" element={<ContestDetails />} />
                     <Route path="/resources/:id" element={<ResourceDetails />} />
                     <Route path="/about" element={<About />} />

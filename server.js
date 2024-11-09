@@ -17,6 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 const API_KEY = "e09eca98a51207e0f0aa35c174e8e2746bc58072";
+const RAPIDAPI_KEY = "28a1c31e1cmshcfc14a57b395d88p161023jsn86047e473e09";
 const USERNAME = "abusayeid";
 const BASE_URL = "https://clist.by/api/v1/json/contest/";
 const RESOURCE_BASE_URL = "https://clist.by/api/v1/json/resource/";
@@ -192,7 +193,7 @@ const populateContests = async () => {
       const duration = contest.duration !== undefined ? contest.duration : null;
       const href = contest.href !== undefined ? contest.href : null;
 
-      if (id && event && start && end && resourceId && duration && href) {
+      if (id && event && start && end && resourceId ) {
         try {
           (await connection).execute(
             `
@@ -373,6 +374,64 @@ app.get("/api/resources/:id", async (req, res) => {
   }
 });
 
+app.get("/api/problems", async (req, res) => {
+  try {
+      const response = await axios.get("https://codeforces.com/api/problemset.problems");
+      const problems = response.data.result.problems.slice(0, 10); 
+      res.json(problems);
+  } catch (error) {
+      res.status(500).json({ error: "Failed to fetch problems" });
+  }
+});
+
+app.post("/api/execute", async (req, res) => {
+  const { code } = req.body;
+
+  try {
+      // Submit code for execution
+      const submissionResponse = await axios.post("https://judge0-ce.p.rapidapi.com/submissions", {
+          source_code: code,
+          language_id: 54, // 54 is the language ID for C++
+          stdin: "" // Add any default input if needed
+      }, {
+          headers: {
+              "Content-Type": "application/json",
+              "x-rapidapi-key": RAPIDAPI_KEY,
+              "x-rapidapi-host": "judge0-ce.p.rapidapi.com"
+          }
+      });
+
+      const token = submissionResponse.data.token;
+
+      // Poll for result
+      let result;
+      do {
+          result = await axios.get(`https://judge0-ce.p.rapidapi.com/submissions/${token}`, {
+              headers: {
+                  "x-rapidapi-key": RAPIDAPI_KEY,
+                  "x-rapidapi-host": "judge0-ce.p.rapidapi.com"
+              }
+          });
+      } while (result.data.status.id <= 2); // 1: In Queue, 2: Processing
+
+      res.json({ output: result.data.stdout || result.data.stderr });
+  } catch (error) {
+      res.status(500).json({ error: "Failed to execute code" });
+  }
+});
+
+app.post('/api/send-message', (req, res) => {
+  const { name, email, message } = req.body;
+
+  if (!name || !email || !message) {
+      return res.status(400).json({ error: "All fields are required" });
+  }
+  console.log("Message received from:", { name, email, message });
+  res.json({ success: true, message: "Message received!" });
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
