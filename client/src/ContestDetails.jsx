@@ -50,11 +50,12 @@ const ContestDetails = () => {
 
 
     const handleParticipate = async() => {
+       
         try {
             const token = localStorage.getItem('token');
             await axios.post(`http://localhost:5000/api/contests/${id}/participate`, {}, {
-                headers:{'x-auth-token': token}
-            });
+        headers: {'x-auth-token': token}
+    });
 
             alert('Marked as participating!');
         } catch (error) {

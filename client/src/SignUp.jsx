@@ -11,7 +11,6 @@ const SignUp = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-       
         if (!username || !password) {
             setMessage('Please enter both username and password.');
             return;
@@ -27,8 +26,8 @@ const SignUp = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-end bg-cover bg-center pr-20" style={{backgroundImage: 'url("/images/back.jpg")'}}>
-            <div className="max-w-md w-full bg-white bg-opacity-00 rounded-lg shadow-lg p-8">
+        <div className="min-h-screen flex items-center justify-center bg-teal-900">
+            <div className="max-w-md w-full bg-teal-200 rounded-lg shadow-lg p-8">
                 <h1 className="text-3xl font-bold mb-6 text-center text-blue-600">Sign Up</h1>
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
@@ -51,7 +50,10 @@ const SignUp = () => {
                             placeholder="Enter your password"
                         />
                     </div>
-                    <button type="submit" className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    <button
+                        type="submit"
+                        className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                    >
                         Sign Up
                     </button>
                     {message && <p className="mt-2 text-center text-red-600">{message}</p>}
