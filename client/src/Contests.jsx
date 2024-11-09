@@ -108,10 +108,10 @@ const Contests = () => {
                 </h2>
                 <p className="text-gray-600">{contest.resource.name}</p>
                 <p className="text-gray-600">
-                  Start: {new Date(contest.start).toLocaleString()}
+                  Start: {new Date(contest.start + "Z").toLocaleString()}
                 </p>
                 <p className="text-gray-600">
-                  End: {new Date(contest.end).toLocaleString()}
+                  End: {new Date(contest.end + "Z").toLocaleString()}
                 </p>
               </div>
 
