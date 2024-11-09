@@ -229,8 +229,8 @@ const populateContests = async () => {
   }
 };
 
-populateResources();
-populateContests();
+ populateResources();
+ populateContests();
 
 app.get("/api/user/dashboard", authMiddleware, async (req, res) => {
   try {
@@ -388,11 +388,11 @@ app.post("/api/execute", async (req, res) => {
   const { code } = req.body;
 
   try {
-      // Submit code for execution
+     
       const submissionResponse = await axios.post("https://judge0-ce.p.rapidapi.com/submissions", {
           source_code: code,
-          language_id: 54, // 54 is the language ID for C++
-          stdin: "" // Add any default input if needed
+          language_id: 54, 
+          stdin: "" 
       }, {
           headers: {
               "Content-Type": "application/json",
@@ -403,7 +403,7 @@ app.post("/api/execute", async (req, res) => {
 
       const token = submissionResponse.data.token;
 
-      // Poll for result
+      
       let result;
       do {
           result = await axios.get(`https://judge0-ce.p.rapidapi.com/submissions/${token}`, {
@@ -412,7 +412,7 @@ app.post("/api/execute", async (req, res) => {
                   "x-rapidapi-host": "judge0-ce.p.rapidapi.com"
               }
           });
-      } while (result.data.status.id <= 2); // 1: In Queue, 2: Processing
+      } while (result.data.status.id <= 2); 
 
       res.json({ output: result.data.stdout || result.data.stderr });
   } catch (error) {
